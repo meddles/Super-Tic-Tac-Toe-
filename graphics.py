@@ -3,12 +3,10 @@ This module contains functions for all the graphics required for eXtreme tic-tac
 """
 
 from turtle import *
-from math import *
-from Shapes *
 
 def gamecanvas():
 	"""
-	Initializes the game board for play, and a system turtle with which to draw items.
+	Initializes the game board for play, and a system turtle.
 
 	Outputs a turtle.
 	"""
@@ -20,7 +18,12 @@ def gamecanvas():
 	screen_x, screen_y = world.screensize()
  	world.setworldcoordinates(0,0,screen_x,screen_y)
 
-	# Creates a system turtle on the black canvas.
+def systemturtle():
+	"""
+	Creates a system turtle with which to draw board elements.
+	"""
+
+	# Creates a system turtle.
 	sys_turtle = Turtle()
 	sys_turtle.speed(0)
 
@@ -89,7 +92,8 @@ def draw_smallboard(turtle):
 
 def draw_gameboard():
 	
-	sys_turtle = gamecanvas()
+	gamecanvas()
+	sys_turtle = systemturtle()
 	draw_bigboard(sys_turtle)
 
 	x_pos = [40.0, 345.0, 650.0]
@@ -131,6 +135,19 @@ def draw_xlarge(turtle,x_coord,y_coord):
 		turtle.fd(200)
 		turtle.bk(200)
 		turtle.lt(90)
+
+def reg_polygon(t,sides,len):
+	angle = (360.0/float(sides))
+	for i in range(sides):
+		fd(t,len)
+		lt(t,angle)
+
+def circle(t,radius):
+	
+	circum = 3.141*2.0*float(radius)
+	n = int(circum / 3) + 1
+	len = circum / n
+	reg_polygon(t,n,len)
 
 def draw_osmall(turtle,x_coord,y_coord):
 	"""
